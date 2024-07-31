@@ -11,6 +11,7 @@ class FlatAdmin(admin.ModelAdmin):
     list_filter = ('new_building', 'rooms_number', 'has_balcony',)
     raw_id_fields = ('liked_by',)
 
+
 class ClaimAdmin(admin.ModelAdmin):
     raw_id_fields = ('author', 'flat',)
     list_display = ('text',)
