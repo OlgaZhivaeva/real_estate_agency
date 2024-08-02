@@ -50,9 +50,9 @@ class Flat(models.Model):
         blank=True,
         db_index=True)
 
-    liked_by = models.ManyToManyField(User, verbose_name='Кто лайкнул', null=True, blank=True)
+    liked_by = models.ManyToManyField(User, verbose_name='Кто лайкнул', blank=True)
 
-    owner_pure_phone = PhoneNumberField(blank=True, null=True)
+    owner_pure_phone = PhoneNumberField(verbose_name='Нормализованный номер владельца', blank=True, null=True)
 
     def __str__(self):
         return f'{self.town}, {self.address} ({self.price}р.)'
@@ -63,3 +63,9 @@ class Claim(models.Model):
     flat = models.ForeignKey(Flat, verbose_name='Квартира на которую пожаловались', on_delete=models.CASCADE)
     text = models.TextField('Текст жалобы')
 
+
+class Owner(models.Model):
+    name = models.CharField('ФИО владельца', max_length=200)
+    phonenumber = models.CharField('Номер владельца', max_length=20)
+    pure_phonenumber = PhoneNumberField(verbose_name='Нормализованный номер владельца', blank=True, null=True)
+    flats = models.ManyToManyField(Flat, verbose_name='Квартиры в собственности', related_name='owner_flats')
