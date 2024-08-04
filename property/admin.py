@@ -27,7 +27,7 @@ class FlatAdmin(admin.ModelAdmin):
 @admin.register(Claim)
 class ClaimAdmin(admin.ModelAdmin):
     raw_id_fields = ('author', 'flat',)
-    list_display = ('text',)
+    list_display = ('flat',)
 
 
 @admin.register(Owner)

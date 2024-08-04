@@ -61,6 +61,10 @@ class Claim(models.Model):
     text = models.TextField('Текст жалобы')
 
 
+    def __str__(self):
+        return f'{self.flat}'
+
+
 class Owner(models.Model):
     name = models.CharField('ФИО владельца', max_length=200)
     phonenumber = models.CharField('Номер владельца', max_length=20)
