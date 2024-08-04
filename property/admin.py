@@ -7,6 +7,7 @@ class OwnerInline(admin.TabularInline):
     model = Owner.flats.through
     raw_id_fields = ('owner',)
 
+
 class FlatAdmin(admin.ModelAdmin):
     search_fields = ('town', 'address',)
     readonly_fields = ['created_at']
@@ -21,6 +22,7 @@ class FlatAdmin(admin.ModelAdmin):
     raw_id_fields = ('liked_by',)
     inlines = [OwnerInline, ]
 
+
 class ClaimAdmin(admin.ModelAdmin):
     raw_id_fields = ('author', 'flat',)
     list_display = ('text',)
@@ -28,7 +30,7 @@ class ClaimAdmin(admin.ModelAdmin):
 
 class OwnerAdmin(admin.ModelAdmin):
     raw_id_fields = ('flats',)
-    list_display = ('name','phonenumber', 'pure_phonenumber',)
+    list_display = ('name', 'phonenumber', 'pure_phonenumber',)
 
 
 admin.site.register(Flat, FlatAdmin)
