@@ -65,7 +65,7 @@ class Claim(models.Model):
     text = models.TextField('Текст жалобы')
 
     def __str__(self):
-        return f'{self.flat}'
+        return self.flat
 
 
 class Owner(models.Model):
