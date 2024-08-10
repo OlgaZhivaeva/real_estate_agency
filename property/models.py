@@ -50,16 +50,19 @@ class Flat(models.Model):
 
     liked_by = models.ManyToManyField(User, verbose_name='Кто лайкнул', blank=True, related_name='liked_by')
 
-
     def __str__(self):
         return f'{self.town}, {self.address} ({self.price}р.)'
 
 
 class Claim(models.Model):
-    author = models.ForeignKey(User, verbose_name='Кто пожаловался', on_delete=models.SET_NULL, null=True, related_name='author_claims')
-    flat = models.ForeignKey(Flat, verbose_name='Квартира на которую пожаловались', on_delete=models.SET_NULL, null=True, related_name='claims')
+    author = models.ForeignKey(User, verbose_name='Кто пожаловался',
+                               on_delete=models.SET_NULL, null=True,
+                               related_name='claims')
+    flat = models.ForeignKey(Flat,
+                             verbose_name='Квартира на которую пожаловались',
+                             on_delete=models.SET_NULL, null=True,
+                             related_name='claims')
     text = models.TextField('Текст жалобы')
-
 
     def __str__(self):
         return f'{self.flat}'
